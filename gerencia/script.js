@@ -9,6 +9,7 @@ const mesaIdSpan = document.getElementById('mesa-id');
 let mesas = [];
 let mesaSelecionada = null;
 const gerente = typeof isGerente !== 'undefined' && isGerente === true;
+const limparBtn = document.getElementById('limpar');
 
 fetch('https://mapa-festa-pingo-backend.onrender.com/api/mesas')
   .then(res => res.json())
@@ -107,6 +108,21 @@ confirmarBtn.onclick = () => {
     method,
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({ nome, cadeiras })
+  }).then(() => location.reload());
+};
+
+limparBtn.onclick = () => {
+  if (!gerente || mesaSelecionada === null) return;
+
+  const id = mesaSelecionada;
+  fetch(`https://mapa-festa-pingo-backend.onrender.com/api/mesas/limpar/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      nome: null,
+      cadeiras: null,
+      ocupada: false
+    })
   }).then(() => location.reload());
 };
 
