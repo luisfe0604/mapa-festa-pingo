@@ -10,7 +10,7 @@ let mesas = [];
 let mesaSelecionada = null;
 const gerente = typeof isGerente !== 'undefined' && isGerente === true;
 
-fetch('https://adaptive-military-cross-single.trycloudflare.com/api/mesas')
+fetch('https://mapa-festa-pingo-backend.onrender.com/api/mesas')
   .then(res => res.json())
   .then(data => {
     mesas = data;
@@ -86,7 +86,7 @@ confirmarBtn.onclick = () => {
   const nome = nomeInput.value;
   const cadeiras = parseInt(cadeirasInput.value);
   const id = mesaSelecionada;
-  const url = gerente ? `https://adaptive-military-cross-single.trycloudflare.com/api/mesas/${id}` : `https://adaptive-military-cross-single.trycloudflare.com/api/mesas/${id}/reservar`;
+  const url = gerente ? `https://mapa-festa-pingo-backend.onrender.com/api/mesas/${id}` : `https://mapa-festa-pingo-backend.onrender.com/api/mesas/${id}/reservar`;
   const method = gerente ? 'PUT' : 'POST';
 
   fetch(url, {
