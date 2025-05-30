@@ -10,7 +10,7 @@ let mesas = [];
 let mesaSelecionada = null;
 const gerente = typeof isGerente !== 'undefined' && isGerente === true;
 
-fetch('http://170.244.176.148:3000/api/mesas')
+fetch('https://plenty-rocks-cover.loca.lt/api/mesas')
   .then(res => res.json())
   .then(data => {
     mesas = data;
@@ -86,7 +86,7 @@ confirmarBtn.onclick = () => {
   const nome = nomeInput.value;
   const cadeiras = parseInt(cadeirasInput.value);
   const id = mesaSelecionada;
-  const url = gerente ? `http://170.244.176.148:3000/api/mesas/${id}` : `http://170.244.176.148:3000/api/mesas/${id}/reservar`;
+  const url = gerente ? `https://plenty-rocks-cover.loca.lt/api/mesas/${id}` : `https://plenty-rocks-cover.loca.lt/api/mesas/${id}/reservar`;
   const method = gerente ? 'PUT' : 'POST';
 
   fetch(url, {
