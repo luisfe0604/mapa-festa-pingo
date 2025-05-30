@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa de Mesas - Festa Junina</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="mapa-container">
+    <!-- Identificações fixas no mapa -->
+    <div id="mapa-identificacoes">
+      <span class="identificacao som">Som</span>
+      <span class="identificacao palco">Palco</span>
+      <span class="identificacao salgados">Salgados</span>
+      <span class="identificacao caixa">Caixa</span>
+      <span class="identificacao pesca">Pesca</span>
+      <span class="identificacao bebidas">Bebidas</span>
+      <span class="identificacao entrada">Entrada</span>
+    </div>
+
+    <!-- Mapa das mesas será renderizado aqui -->
+    <div id="mapa"></div>
+  </div>
+
+  <!-- Modal de reserva -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Reservar Mesa <span id="mesa-id"></span></h2>
+      <label>Nome: <input type="text" id="nome"></label><br>
+      <label>Cadeiras: <input type="number" id="cadeiras"></label><br>
+      <button id="confirmar">Confirmar</button>
+      <button id="cancelar">Cancelar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
