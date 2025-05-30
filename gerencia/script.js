@@ -17,6 +17,20 @@ fetch('https://mapa-festa-pingo-backend.onrender.com/api/mesas')
     renderizarMapa();
   });
 
+  const socket = new WebSocket('wss://mapa-festa-pingo-backend.onrender.com');
+
+  socket.addEventListener('message', (event) => {
+    try {
+      const data = JSON.parse(event.data);
+      if (data.type === 'mesas:update') {
+        mesas = data.mesas;
+        renderizarMapa();
+      }
+    } catch (error) {
+      console.error('Erro ao processar mensagem WebSocket:', error);
+    }
+  });
+
   function renderizarMapa() {
     mapa.innerHTML = '';
   
