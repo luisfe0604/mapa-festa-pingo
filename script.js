@@ -35,7 +35,7 @@ fetch('https://mapa-festa-pingo-backend.onrender.com/api/mesas')
     mapa.innerHTML = '';
   
     const colunas = 6;
-    const linhas = 19;
+    const linhas = 25;
   
     const ladoEsquerdo = document.createElement('div');
     const ladoDireito = document.createElement('div');
