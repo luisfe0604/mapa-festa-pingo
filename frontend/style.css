@@ -212,7 +212,7 @@ body {
   }
   
   .identificacao.caixa {
-    top: 480px;
+    top: 430px;
     left: 105%;
     transform: translateX(-105%);
     writing-mode: vertical-rl;
@@ -221,19 +221,19 @@ body {
   }
   
   .identificacao.pesca {
-    top: 1300px;
+    top: 1000px;
     left: 100%;
     transform: translateX(-100%);
   }
   
   .identificacao.bebidas {
-    top: 1300px;
+    top: 1000px;
     left: 50%;
     transform: translateX(-50%);
   }
   
   .identificacao.entrada {
-    top: 1300px;
+    top: 1000px;
     left: 0;
   }
 
