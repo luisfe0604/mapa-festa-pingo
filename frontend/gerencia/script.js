@@ -18,7 +18,7 @@ fetch('https://mapa-festa-pingo-backend-infantil.onrender.com/api/mesas')
     renderizarMapa();
   });
 
-  const socket = new WebSocket('wss://mapa-festa-pingo-backend.onrender.com');
+  const socket = new WebSocket('wss://mapa-festa-pingo-backend-infantil.onrender.com');
 
   socket.addEventListener('message', (event) => {
     try {
@@ -115,7 +115,7 @@ limparBtn.onclick = () => {
   if (!gerente || mesaSelecionada === null) return;
 
   const id = mesaSelecionada;
-  fetch(`https://mapa-festa-pingo-backend.onrender.com/api/mesas/limpar/${id}`, {
+  fetch(`https://mapa-festa-pingo-backend-infantil.onrender.com/api/mesas/limpar/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

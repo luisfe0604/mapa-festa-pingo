@@ -17,7 +17,7 @@ fetch('https://mapa-festa-pingo-backend-infantil.onrender.com/api/mesas')
     renderizarMapa();
   });
 
-  const socket = new WebSocket('wss://mapa-festa-pingo-backend.onrender.com');
+  const socket = new WebSocket('wss://mapa-festa-pingo-backend-infantil.onrender.com');
 
   socket.addEventListener('message', (event) => {
     try {
