@@ -363,49 +363,48 @@ body {
 }
 
 #exportar-excel {
+  display: block;
 
-  position: fixed;
+  margin: 40px auto 20px;
 
-  top: 20px;
-  right: 20px;
-
-  z-index: 999;
-
-  padding: 14px 20px;
+  padding: 16px 28px;
 
   border: none;
 
-  border-radius: 14px;
+  border-radius: 16px;
 
-  background:
-    linear-gradient(
-      145deg,
-      #1d9b52,
-      #15763d
-    );
+  background: linear-gradient(145deg, #1d9b52, #15763d);
 
   color: white;
 
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
 
   cursor: pointer;
 
-  box-shadow:
-    0 8px 18px rgba(0,0,0,0.18);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
 
   transition:
     transform 0.2s ease,
-    filter 0.2s ease;
+    filter 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 #exportar-excel:hover {
+  transform: translateY(-3px);
 
+  filter: brightness(1.05);
+
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+}
+
+#exportar-excel:hover {
   transform: translateY(-2px);
 
   filter: brightness(1.05);
 }
-
 
 /* =========================
    ANIMAÇÃO
