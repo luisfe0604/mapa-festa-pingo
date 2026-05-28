@@ -32,52 +32,72 @@ fetch('https://simulados-oab-back.onrender.com/mesas/api/mesas')
     }
   });
 
-  function renderizarMapa() {
-    mapa.innerHTML = '';
-  
-    const colunas = 6;
-    const linhas = 25;
-  
-    const ladoEsquerdo = document.createElement('div');
-    const ladoDireito = document.createElement('div');
-  
-    ladoEsquerdo.className = 'lado-mapa';
-    ladoDireito.className = 'lado-mapa';
-  
-    for (let col = 0; col < colunas; col++) {
-      const colunaDiv = document.createElement('div');
-      colunaDiv.className = 'coluna-mesa';
-  
-      for (let row = 0; row < linhas; row++) {
-        const index = col * linhas + row;
-        if (index >= mesas.length) break;
-  
-        const div = document.createElement('div');
-        div.className = 'mesa';
-        div.textContent = index + 1;
-  
-        if (mesas[index]?.ocupada) {
-          div.classList.add('ocupada');
-        }
-  
-        div.onclick = () => abrirModal(index);
-        colunaDiv.appendChild(div);
-      }
-  
-      if (col < 3) {
-        ladoEsquerdo.appendChild(colunaDiv);
-      } else {
-        ladoDireito.appendChild(colunaDiv);
-      }
-    }
-  
-    const wrapper = document.createElement('div');
-    wrapper.className = 'mapa-wrapper';
-    wrapper.appendChild(ladoEsquerdo);
-    wrapper.appendChild(ladoDireito);
-  
-    mapa.appendChild(wrapper);
+function renderizarMapa() {
+
+  mapa.innerHTML = '';
+
+  const colunasEsquerda = 4;
+  const colunasDireita = 3;
+
+  const totalColunas = colunasEsquerda + colunasDireita;
+
+  const ladoEsquerdo = document.createElement('div');
+  const ladoDireito = document.createElement('div');
+
+  ladoEsquerdo.className = 'lado-mapa esquerda';
+  ladoDireito.className = 'lado-mapa direita';
+
+  const colunasLeft = [];
+  const colunasRight = [];
+
+  for (let i = 0; i < colunasEsquerda; i++) {
+
+    const coluna = document.createElement('div');
+
+    coluna.className = 'coluna-mesa';
+
+    colunasLeft.push(coluna);
+
+    ladoEsquerdo.appendChild(coluna);
   }
+
+  for (let i = 0; i < colunasDireita; i++) {
+
+    const coluna = document.createElement('div');
+
+    coluna.className = 'coluna-mesa';
+
+    colunasRight.push(coluna);
+
+    ladoDireito.appendChild(coluna);
+  }
+
+  mesas.forEach((mesa, index) => {
+
+    const div = document.createElement('div');
+
+    div.className = 'mesa';
+
+    div.textContent = index + 1;
+
+    if (mesa.ocupada) {
+      div.classList.add('ocupada');
+    }
+
+    div.onclick = () => abrirModal(index);
+
+    const colunaAtual = index % totalColunas;
+
+    if (colunaAtual < colunasEsquerda) {
+
+      colunasLeft[colunaAtual].appendChild(div);
+
+    } else {
+
+      colunasRight[colunaAtual - colunasEsquerda].appendChild(div);
+    }
+  })
+}
   
 
 function abrirModal(id) {
