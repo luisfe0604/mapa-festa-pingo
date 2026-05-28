@@ -382,10 +382,9 @@ body {
     overflow-y: auto;
   }
 
-#mapa-container {
-  margin: 60px 28px 60px;
-}
-
+  #mapa-container {
+    margin: 60px 28px 60px;
+  }
 
   .mapa-wrapper {
     grid-template-columns:

@@ -318,8 +318,6 @@ body {
 
   border-radius: 12px;
 
-  background: #d95b1f;
-
   color: white;
 
   font-size: 15px;
@@ -330,6 +328,18 @@ body {
   transition:
     background 0.2s ease,
     transform 0.2s ease;
+}
+
+#confirmar {
+  background: #d95b1f;
+}
+
+#limpar {
+  background: #d63031;
+}
+
+#cancelar {
+  background: #636e72;
 }
 
 .modal-content button:hover {
@@ -382,10 +392,9 @@ body {
     overflow-y: auto;
   }
 
-#mapa-container {
-  margin: 60px 28px 60px;
-}
-
+  #mapa-container {
+    margin: 60px 28px 60px;
+  }
 
   .mapa-wrapper {
     grid-template-columns:
