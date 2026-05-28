@@ -11,14 +11,14 @@ let mesaSelecionada = null;
 const gerente = typeof isGerente !== 'undefined' && isGerente === true;
 const limparBtn = document.getElementById('limpar');
 
-fetch('https://simulados-oab-back.onrender.com/mesas/api/mesas')
+fetch('https://simulados-oab-back.onrender.com/mesas')
   .then(res => res.json())
   .then(data => {
     mesas = data;
     renderizarMapa();
   });
 
-  const socket = new WebSocket('wss://mapa-festa-pingo-backend.onrender.com');
+  const socket = new WebSocket('wss:///simulados-oab-back.onrender.com');
 
   socket.addEventListener('message', (event) => {
     try {
@@ -121,7 +121,7 @@ confirmarBtn.onclick = () => {
   const nome = nomeInput.value;
   const cadeiras = parseInt(cadeirasInput.value);
   const id = mesaSelecionada;
-  const url = gerente ? `https://simulados-oab-back.onrender.com/mesas/api/mesas/${id}` : `https://simulados-oab-back.onrender.com/mesas/api/mesas/${id}/reservar`;
+  const url = gerente ? `https://simulados-oab-back.onrender.com/mesas/${id}` : `https://simulados-oab-back.onrender.com/mesas/${id}/reservar`;
   const method = gerente ? 'PUT' : 'POST';
 
   fetch(url, {
@@ -135,7 +135,7 @@ limparBtn.onclick = () => {
   if (!gerente || mesaSelecionada === null) return;
 
   const id = mesaSelecionada;
-  fetch(`https://simulados-oab-back.onrender.com/mesas/api/mesas/limpar/${id}`, {
+  fetch(`https://simulados-oab-back.onrender.com/mesas/limpar/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
