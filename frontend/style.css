@@ -373,14 +373,14 @@ body {
   }
 
 #mapa-container {
-  margin: 100px 5px 60px;
+  margin: 100px 28px 60px;
 }
 
 
   .mapa-wrapper {
     grid-template-columns:
       auto
-      10px
+      22px
       auto;
 
     align-items: start;
