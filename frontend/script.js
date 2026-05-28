@@ -10,7 +10,7 @@ let mesas = [];
 let mesaSelecionada = null;
 const gerente = typeof isGerente !== 'undefined' && isGerente === true;
 
-fetch('https://simulados-oab-back.onrender.com/mesas/api/mesas')
+fetch('https://simulados-oab-back.onrender.com/mesas')
   .then(res => res.json())
   .then(data => {
     mesas = data;
@@ -100,7 +100,7 @@ confirmarBtn.onclick = () => {
   const nome = nomeInput.value;
   const cadeiras = parseInt(cadeirasInput.value);
   const id = mesaSelecionada;
-  const url = gerente ? `https://simulados-oab-back.onrender.com/mesas/api/mesas/${id}` : `https://simulados-oab-back.onrender.com/mesas/api/mesas/${id}/reservar`;
+  const url = gerente ? `https://simulados-oab-back.onrender.com/mesas/${id}` : `https://simulados-oab-back.onrender.com/mesas/${id}/reservar`;
   const method = gerente ? 'PUT' : 'POST';
 
   fetch(url, {
