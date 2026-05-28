@@ -427,19 +427,19 @@ body {
 ========================= */
 
   .identificacao.som {
-    top: 0;
+    top: -2px;
     left: 0;
   }
 
   .identificacao.palco {
-    top: 0;
+    top: -2px;
     left: 50%;
 
     transform: translateX(-50%);
   }
 
   .identificacao.salgados {
-    top: 0;
+    top: -2px;
     right: 0;
   }
 
