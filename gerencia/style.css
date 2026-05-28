@@ -1,24 +1,19 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   padding: 20px;
 
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
 
-  background:
-    linear-gradient(
-      to bottom,
-      #fff7e6,
-      #ffe7c2
-    );
+  background: linear-gradient(to bottom, #fff7e6, #ffe7c2);
 
   min-height: 100vh;
 
   overflow-x: auto;
 }
+
+/* =========================
+   CONTAINER GERAL
+========================= */
 
 #mapa-container {
   position: relative;
@@ -27,6 +22,10 @@ body {
 
   margin: 120px auto 180px;
 }
+
+/* =========================
+   MAPA
+========================= */
 
 #mapa {
   position: relative;
@@ -44,6 +43,10 @@ body {
 
   width: fit-content;
 }
+
+/* =========================
+   LADOS
+========================= */
 
 .lado-mapa {
   display: flex;
@@ -66,6 +69,10 @@ body {
   gap: 14px;
 }
 
+/* =========================
+   MESAS
+========================= */
+
 .mesa {
   width: 110px;
   height: 68px;
@@ -74,12 +81,7 @@ body {
 
   border-radius: 18px;
 
-  background:
-    linear-gradient(
-      145deg,
-      #84d78d,
-      #58bf69
-    );
+  background: linear-gradient(145deg, #84d78d, #58bf69);
 
   color: #17331d;
 
@@ -92,8 +94,7 @@ body {
 
   cursor: pointer;
 
-  box-shadow:
-    0 8px 20px rgba(0,0,0,0.14);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
 
   transition:
     transform 0.2s ease,
@@ -106,27 +107,23 @@ body {
 
   filter: brightness(1.03);
 
-  box-shadow:
-    0 12px 24px rgba(0,0,0,0.2);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .mesa.ocupada {
-  background:
-    linear-gradient(
-      145deg,
-      #ff8c92,
-      #ff5e68
-    );
+  background: linear-gradient(145deg, #ff8c92, #ff5e68);
 
   color: white;
 }
+
+/* =========================
+   PLACAS
+========================= */
 
 #mapa-identificacoes {
   position: absolute;
 
   inset: 0;
-
-  overflow: visible;
 
   pointer-events: none;
 }
@@ -145,12 +142,11 @@ body {
 
   border-radius: 16px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(125, 74, 33, 0.96),
-      rgba(88, 52, 24, 0.96)
-    );
+  background: linear-gradient(
+    145deg,
+    rgba(125, 74, 33, 0.96),
+    rgba(88, 52, 24, 0.96)
+  );
 
   border: 3px solid #f7d08a;
 
@@ -158,16 +154,34 @@ body {
 
   font-size: 22px;
   font-weight: 800;
+  letter-spacing: 1px;
 
   white-space: nowrap;
 
   text-transform: uppercase;
 
   box-shadow:
-    0 10px 22px rgba(0,0,0,0.22);
+    0 10px 22px rgba(0, 0, 0, 0.22),
+    inset 0 2px 4px rgba(255, 255, 255, 0.12);
 
   z-index: 20;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
+
+.identificacao:hover {
+  transform: scale(1.04);
+
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.28),
+    inset 0 2px 4px rgba(255, 255, 255, 0.12);
+}
+
+/* =========================
+   TOPO
+========================= */
 
 .identificacao.som {
   top: -95px;
@@ -186,6 +200,10 @@ body {
   right: 0;
 }
 
+/* =========================
+   LATERAL
+========================= */
+
 .identificacao.caixa {
   top: 50%;
   right: -100px;
@@ -201,6 +219,10 @@ body {
 
   padding: 20px 0;
 }
+
+/* =========================
+   PARTE INFERIOR
+========================= */
 
 .identificacao.entrada {
   bottom: -100px;
@@ -219,12 +241,16 @@ body {
   right: 0;
 }
 
+/* =========================
+   MODAL
+========================= */
+
 .modal {
   position: fixed;
 
   inset: 0;
 
-  background: rgba(0,0,0,0.45);
+  background: rgba(0, 0, 0, 0.45);
 
   display: flex;
   align-items: center;
@@ -237,7 +263,7 @@ body {
 
 .modal-content {
   width: 90%;
-  max-width: 450px;
+  max-width: 420px;
 
   padding: 34px;
 
@@ -245,8 +271,9 @@ body {
 
   background: white;
 
-  box-shadow:
-    0 20px 50px rgba(0,0,0,0.25);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+
+  animation: aparecer 0.25s ease;
 }
 
 .modal-content h2 {
@@ -254,6 +281,8 @@ body {
   margin-bottom: 24px;
 
   text-align: center;
+
+  color: #2c2c2c;
 }
 
 .modal-content label {
@@ -262,6 +291,8 @@ body {
   margin-bottom: 18px;
 
   font-weight: 700;
+
+  color: #444;
 }
 
 .modal-content input {
@@ -276,6 +307,35 @@ body {
   border: 1px solid #d5d5d5;
 
   font-size: 15px;
+
+  box-sizing: border-box;
+}
+
+.modal-content button {
+  padding: 12px 18px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #d95b1f;
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.modal-content button:hover {
+  background: #bc4710;
+
+  transform: translateY(-1px);
 }
 
 .modal-buttons {
@@ -288,60 +348,52 @@ body {
   margin-top: 20px;
 }
 
-.modal-content button {
-  padding: 12px 18px;
-
-  border: none;
-
-  border-radius: 12px;
-
-  color: white;
-
-  font-size: 15px;
-  font-weight: 700;
-
-  cursor: pointer;
-}
-
-#confirmar {
-  background: #d95b1f;
-}
-
-#limpar {
-  background: #d63031;
-}
-
-#cancelar {
-  background: #636e72;
-}
-
 .hidden {
   display: none;
 }
 
-@media (max-width: 900px) {
+/* =========================
+   ANIMAÇÃO
+========================= */
 
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 900px) {
+  * {
+    box-sizing: border-box;
+  }
   body {
     padding: 2px;
-
     overflow-x: auto;
+    overflow-y: auto;
   }
 
-  #mapa-container {
-    margin-top: 95px;
-    margin-bottom: 90px;
+#mapa-container {
+  margin: 60px 28px 60px;
+}
 
-    padding-top: 60px;
-    padding-bottom: 60px;
-
-    min-width: fit-content;
-  }
 
   .mapa-wrapper {
     grid-template-columns:
       auto
-      8px
+      22px
       auto;
+
+    align-items: start;
   }
 
   .lado-mapa {
@@ -353,13 +405,17 @@ body {
   }
 
   .mesa {
-    width: 34px;
-    height: 34px;
+    width: 42px;
+    height: 38px;
 
-    font-size: 9px;
+    font-size: 12px;
 
     border-radius: 8px;
   }
+
+  /* =========================
+     PLACAS
+  ========================= */
 
   .identificacao {
     min-width: 78px;
@@ -372,32 +428,46 @@ body {
     border-width: 2px;
 
     border-radius: 8px;
+
+    letter-spacing: 0.5px;
   }
 
+  /* =========================
+   TOPO
+========================= */
+
   .identificacao.som {
-    top: 0;
+    top: -48px;
     left: 0;
   }
 
   .identificacao.palco {
-    top: 0;
+    top: -48px;
     left: 50%;
 
     transform: translateX(-50%);
   }
 
   .identificacao.salgados {
-    top: 0;
+    top: -48px;
     right: 0;
   }
 
+  /* =========================
+   LATERAL
+========================= */
+
   .identificacao.caixa {
-    right: -26px;
+    right: -30px;
 
-    width: 20px;
+    width: 24px;
 
-    font-size: 9px;
+    padding: 8px 0;
   }
+
+  /* =========================
+   PARTE DE BAIXO
+========================= */
 
   .identificacao.entrada {
     bottom: -48px;
@@ -414,5 +484,33 @@ body {
   .identificacao.pesca {
     bottom: -48px;
     right: 0;
+  }
+
+  /* =========================
+     MODAL
+  ========================= */
+
+  .modal-content {
+    width: 88%;
+
+    padding: 20px;
+  }
+
+  .modal-content h2 {
+    font-size: 18px;
+  }
+
+  .modal-content label {
+    font-size: 13px;
+  }
+
+  .modal-content input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .modal-content button {
+    font-size: 13px;
+    padding: 10px 14px;
   }
 }
