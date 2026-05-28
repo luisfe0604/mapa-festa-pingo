@@ -1,280 +1,506 @@
 body {
-  font-family: sans-serif;
-  background-color: #f5f5f5;
+  margin: 0;
   padding: 20px;
+
+  font-family: "Segoe UI", sans-serif;
+
+  background: linear-gradient(to bottom, #fff7e6, #ffe7c2);
+
+  min-height: 100vh;
+
+  overflow-x: auto;
 }
+
+/* =========================
+   CONTAINER GERAL
+========================= */
 
 #mapa-container {
   position: relative;
-  margin-top: 60px;
+
+  width: fit-content;
+
+  margin: 120px auto 180px;
 }
 
-#mapa-identificacoes {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-}
+/* =========================
+   MAPA
+========================= */
 
-.identificacao {
-  position: absolute;
-  background-color: rgba(117, 117, 117, 0.8);
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 30px;
-  pointer-events: none;
-}
-
-.identificacao.som {
-  top: -60px;
-  left: 0;
-}
-
-.identificacao.palco {
-  top: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.identificacao.salgados {
-  top: -60px;
-  left: 100%;
-  transform: translateX(-100%);
-}
-
-.identificacao.caixa {
-  top: 600px;
-  left: 100%;
-  transform: translateX(-100%);
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-}
-
-.identificacao.pesca {
-  top: 1350px;
-  left: 100%;
-  transform: translateX(-100%);
-}
-
-.identificacao.bebidas {
-  top: 1350px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.identificacao.entrada {
-  top: 1350px;
-  left: 0;
+#mapa {
+  position: relative;
 }
 
 .mapa-wrapper {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+
+  grid-template-columns:
+    auto
+    260px
+    auto;
+
+  align-items: start;
+
+  width: fit-content;
 }
+
+/* =========================
+   LADOS
+========================= */
 
 .lado-mapa {
   display: flex;
-  flex-direction: row;
-  gap: 8px;
+
+  gap: 14px;
+}
+
+.lado-mapa.esquerda {
+  grid-column: 1;
+}
+
+.lado-mapa.direita {
+  grid-column: 3;
 }
 
 .coluna-mesa {
   display: flex;
   flex-direction: column;
-  gap: 8px; /* Espaço entre mesas */
+
+  gap: 14px;
 }
 
+/* =========================
+   MESAS
+========================= */
+
 .mesa {
-  width: 100px;
-  height: 60px;
-  background-color: #86e99d;
+  width: 110px;
+  height: 68px;
+
+  border: none;
+
+  border-radius: 18px;
+
+  background: linear-gradient(145deg, #84d78d, #58bf69);
+
+  color: #17331d;
+
+  font-size: 18px;
+  font-weight: 800;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+
   cursor: pointer;
-  font-weight: bold;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.mesa:hover {
+  transform: translateY(-4px);
+
+  filter: brightness(1.03);
+
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .mesa.ocupada {
-  background-color: #ff727e;
-  cursor: not-allowed;
+  background: linear-gradient(145deg, #ff8c92, #ff5e68);
+
+  color: white;
 }
 
-.modal {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+/* =========================
+   PLACAS
+========================= */
+
+#mapa-identificacoes {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+}
+
+.identificacao {
+  position: absolute;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(3px);
+
+  min-width: 170px;
+  height: 60px;
+
+  padding: 0 24px;
+
+  border-radius: 16px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(125, 74, 33, 0.96),
+    rgba(88, 52, 24, 0.96)
+  );
+
+  border: 3px solid #f7d08a;
+
+  color: white;
+
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+
+  white-space: nowrap;
+
+  text-transform: uppercase;
+
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.22),
+    inset 0 2px 4px rgba(255, 255, 255, 0.12);
+
+  z-index: 20;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.identificacao:hover {
+  transform: scale(1.04);
+
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.28),
+    inset 0 2px 4px rgba(255, 255, 255, 0.12);
+}
+
+/* =========================
+   TOPO
+========================= */
+
+.identificacao.som {
+  top: -95px;
+  left: 0;
+}
+
+.identificacao.palco {
+  top: -95px;
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+.identificacao.salgados {
+  top: -95px;
+  right: 0;
+}
+
+/* =========================
+   LATERAL
+========================= */
+
+.identificacao.caixa {
+  top: 50%;
+  right: -100px;
+
+  transform: translateY(-50%);
+
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+
+  width: 60px;
+  min-width: unset;
+  height: auto;
+
+  padding: 20px 0;
+}
+
+/* =========================
+   PARTE INFERIOR
+========================= */
+
+.identificacao.entrada {
+  bottom: -100px;
+  left: 0;
+}
+
+.identificacao.bebidas {
+  bottom: -100px;
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+.identificacao.pesca {
+  bottom: -100px;
+  right: 0;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  backdrop-filter: blur(4px);
+
+  z-index: 100;
 }
 
 .modal-content {
-  background: #ffffff;
-  padding: 30px 40px;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
   width: 90%;
-  text-align: center;
-  font-family: sans-serif;
-  animation: fadeInScale 0.3s ease-in-out;
+  max-width: 420px;
+
+  padding: 34px;
+
+  border-radius: 22px;
+
+  background: white;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+
+  animation: aparecer 0.25s ease;
 }
 
 .modal-content h2 {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  color: #333;
+  margin-top: 0;
+  margin-bottom: 24px;
+
+  text-align: center;
+
+  color: #2c2c2c;
 }
 
 .modal-content label {
   display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
+
+  margin-bottom: 18px;
+
+  font-weight: 700;
+
   color: #444;
-  text-align: left;
 }
 
 .modal-content input {
   width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+
+  margin-top: 8px;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  border: 1px solid #d5d5d5;
+
+  font-size: 15px;
+
+  box-sizing: border-box;
 }
 
 .modal-content button {
-  padding: 10px 15px;
-  margin: 5px;
+  padding: 12px 18px;
+
   border: none;
-  border-radius: 6px;
-  background-color: #e95420;
+
+  border-radius: 12px;
+
+  background: #d95b1f;
+
   color: white;
-  font-weight: bold;
+
+  font-size: 15px;
+  font-weight: 700;
+
   cursor: pointer;
-  transition: background-color 0.3s ease;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .modal-content button:hover {
-  background-color: #c13d0e;
+  background: #bc4710;
+
+  transform: translateY(-1px);
 }
 
 .hidden {
   display: none;
 }
 
-/* CSS base que você já tem */
+/* =========================
+   ANIMAÇÃO
+========================= */
 
-/* Adaptar para telas pequenas (celulares) */
-@media (max-width: 600px) {
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 900px) {
+  * {
+    box-sizing: border-box;
+  }
   body {
-    padding: 10px;
-    font-size: 14px;
+    padding: 2px;
+    overflow-x: auto;
+    overflow-y: auto;
   }
 
-  #mapa-container {
-    margin-top: 40px;
-  }
+#mapa-container {
+  margin: 100px 5px 60px;
+}
 
-  #mapa-identificacoes {
-    top: -40px; /* menos distância para topo */
-  }
 
-  .identificacao {
-    font-size: 20px;
-    padding: 2px 6px;
-    border-radius: 4px;
-  }
+  .mapa-wrapper {
+    grid-template-columns:
+      auto
+      10px
+      auto;
 
-  .identificacao.som {
-    top: 0;
-    left: 0;
-  }
-  
-  .identificacao.palco {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .identificacao.salgados {
-    top: 0;
-    left: 100%;
-    transform: translateX(-100%);
-  }
-  
-  .identificacao.caixa {
-    top: 430px;
-    left: 105%;
-    transform: translateX(-105%);
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    padding: 2px 2px;
-  }
-  
-  .identificacao.pesca {
-    top: 1000px;
-    left: 100%;
-    transform: translateX(-100%);
-  }
-  
-  .identificacao.bebidas {
-    top: 1000px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .identificacao.entrada {
-    top: 1000px;
-    left: 0;
+    align-items: start;
   }
 
   .lado-mapa {
-    flex-direction: row;
-    justify-content: center;
-    gap: 6px;
-    overflow-x: auto; /* permite scroll horizontal se precisar */
+    gap: 2px;
   }
 
   .coluna-mesa {
-    gap: 3px;
+    gap: 2px;
   }
 
   .mesa {
-    width: 45px;
-    height: 45px;
-    font-size: 20px;
+    width: 36px;
+    height: 36px;
+
+    font-size: 9px;
+
+    border-radius: 8px;
   }
 
+  /* =========================
+     PLACAS
+  ========================= */
+
+  .identificacao {
+    min-width: 78px;
+    height: 28px;
+
+    padding: 0 8px;
+
+    font-size: 10px;
+
+    border-width: 2px;
+
+    border-radius: 8px;
+
+    letter-spacing: 0.5px;
+  }
+
+  /* =========================
+   TOPO
+========================= */
+
+  .identificacao.som {
+    top: -5;
+    left: 0;
+  }
+
+  .identificacao.palco {
+    top: -5;
+    left: 50%;
+
+    transform: translateX(-50%);
+  }
+
+  .identificacao.salgados {
+    top: -5;
+    right: 0;
+  }
+
+  /* =========================
+   LATERAL
+========================= */
+
+  .identificacao.caixa {
+    right: -30px;
+
+    width: 24px;
+
+    padding: 8px 0;
+  }
+
+  /* =========================
+   PARTE DE BAIXO
+========================= */
+
+  .identificacao.entrada {
+    bottom: -48px;
+    left: 0;
+  }
+
+  .identificacao.bebidas {
+    bottom: -48px;
+    left: 50%;
+
+    transform: translateX(-50%);
+  }
+
+  .identificacao.pesca {
+    bottom: -48px;
+    right: 0;
+  }
+
+  /* =========================
+     MODAL
+  ========================= */
+
   .modal-content {
-    padding: 30px;
-    width: 80%;
+    width: 88%;
+
+    padding: 20px;
   }
 
   .modal-content h2 {
-    font-size: 1.8rem;
+    font-size: 18px;
   }
 
   .modal-content label {
-    font-size: 20px;
+    font-size: 13px;
   }
 
   .modal-content input {
+    font-size: 14px;
     padding: 10px;
-    font-size: 20px;
-    width: 95%;
   }
 
   .modal-content button {
-    padding: 8px 12px;
-    font-size: 20px;
+    font-size: 13px;
+    padding: 10px 14px;
   }
 }
