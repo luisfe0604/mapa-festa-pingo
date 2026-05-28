@@ -18,7 +18,7 @@ fetch('https://simulados-oab-back.onrender.com/mesas')
     renderizarMapa();
   });
 
-  const socket = new WebSocket('wss:///simulados-oab-back.onrender.com');
+  const socket = new WebSocket('wss://simulados-oab-back.onrender.com');
 
   socket.addEventListener('message', (event) => {
     try {
@@ -96,9 +96,17 @@ function renderizarMapa() {
 
       colunasRight[colunaAtual - colunasEsquerda].appendChild(div);
     }
-  })
+  });
+
+  const wrapper = document.createElement('div');
+
+  wrapper.className = 'mapa-wrapper';
+
+  wrapper.appendChild(ladoEsquerdo);
+  wrapper.appendChild(ladoDireito);
+
+  mapa.appendChild(wrapper);
 }
-  
 
 function abrirModal(id) {
   const mesa = mesas[id];
