@@ -154,4 +154,45 @@ limparBtn.onclick = () => {
   }).then(() => location.reload());
 };
 
+document
+  .getElementById('exportar-excel')
+  .onclick = exportarExcel;
+
+function exportarExcel() {
+
+  const dados = mesas.map((mesa, index) => ({
+
+    Mesa: index + 1,
+
+    Nome: mesa.nome || 'Livre',
+
+    Cadeiras: mesa.cadeiras || 0
+  }));
+
+  const worksheet =
+    XLSX.utils.json_to_sheet(dados);
+
+  const workbook =
+    XLSX.utils.book_new();
+
+  XLSX.utils.book_append_sheet(
+    workbook,
+    worksheet,
+    'Mesas'
+  );
+
+  /* largura das colunas */
+
+  worksheet['!cols'] = [
+    { wch: 10 },
+    { wch: 35 },
+    { wch: 15 }
+  ];
+
+  XLSX.writeFile(
+    workbook,
+    'mesas-festa.xlsx'
+  );
+}
+
 cancelarBtn.onclick = () => modal.classList.add('hidden');
