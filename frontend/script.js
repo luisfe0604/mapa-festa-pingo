@@ -180,8 +180,8 @@ confirmarBtn.onclick = async () => {
 
     mostrarToast(
       gerente
-        ? `Mesa ${id + 1} reservada com sucesso!`
-        : `Mesa ${id + 1} atualizada com sucesso!`,
+        ? `Mesa ${id + 1} atualizada com sucesso!`
+        : `Mesa ${id + 1} reservada com sucesso!`,
       "success"
     );
 

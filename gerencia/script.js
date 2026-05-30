@@ -170,8 +170,8 @@ confirmarBtn.onclick = async () => {
 
     mostrarToast(
       gerente
-        ? `Mesa ${id + 1} reservada com sucesso!`
-        : `Mesa ${id + 1} atualizada com sucesso!`,
+        ? `Mesa ${id + 1} atualizada com sucesso!`
+        : `Mesa ${id + 1} reservada com sucesso!`,
       "success"
     );
 
@@ -188,27 +188,65 @@ confirmarBtn.onclick = async () => {
   }
 };
 
-limparBtn.onclick = () => {
-  if (!gerente || mesaSelecionada === null) return;
+limparBtn.onclick = async () => {
+
+  if (!gerente || mesaSelecionada === null) {
+    return;
+  }
 
   const confirmar = confirm(
-    `Deseja realmente liberar a Mesa ${mesaSelecionada + 1}?`,
+    `Deseja realmente liberar a Mesa ${mesaSelecionada + 1}?`
   );
 
   if (!confirmar) {
     return;
   }
 
-  const id = mesaSelecionada;
-  fetch(`https://simulados-oab-back.onrender.com/mesas/limpar/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      nome: null,
-      cadeiras: null,
-      ocupada: false,
-    }),
-  }).then(() => location.reload());
+  try {
+
+    const id = mesaSelecionada;
+
+    const response = await fetch(
+      `https://simulados-oab-back.onrender.com/mesas/limpar/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          nome: null,
+          cadeiras: null,
+          ocupada: false
+        })
+      }
+    );
+
+    if (!response.ok) {
+
+      mostrarToast(
+        "Erro ao liberar mesa.",
+        "error"
+      );
+
+      return;
+    }
+
+    mostrarToast(
+      `Mesa ${id + 1} liberada com sucesso!`,
+      "success"
+    );
+
+    modal.classList.add("hidden");
+
+  } catch (error) {
+
+    console.error(error);
+
+    mostrarToast(
+      "Erro de conexão com o servidor.",
+      "error"
+    );
+  }
 };
 
 document.getElementById("exportar-excel").onclick = exportarExcel;
