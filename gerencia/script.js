@@ -11,12 +11,24 @@ let mesaSelecionada = null;
 const gerente = typeof isGerente !== "undefined" && isGerente === true;
 const limparBtn = document.getElementById("limpar");
 
-fetch("https://simulados-oab-back.onrender.com/mesas")
-  .then((res) => res.json())
-  .then((data) => {
-    mesas = data;
-    renderizarMapa();
-  });
+async function carregarMesas() {
+
+  const response = await fetch(
+    'https://simulados-oab-back.onrender.com/mesas'
+  );
+
+  mesas = await response.json();
+
+  renderizarMapa();
+}
+
+document.addEventListener('visibilitychange', () => {
+
+  if (!document.hidden) {
+    carregarMesas();
+  }
+
+});
 
 const socket = new WebSocket("wss://simulados-oab-back.onrender.com");
 
