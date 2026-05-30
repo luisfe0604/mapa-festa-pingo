@@ -21,6 +21,8 @@ async function carregarMesas() {
   renderizarMapa();
 }
 
+carregarMesas();
+
 document.addEventListener('visibilitychange', () => {
 
   if (!document.hidden) {
