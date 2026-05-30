@@ -128,20 +128,74 @@ modal.addEventListener("click", (event) => {
   }
 });
 
-confirmarBtn.onclick = () => {
+function mostrarToast(mensagem, tipo = 'success') {
+
+  const toast = document.getElementById('toast');
+
+  toast.textContent = mensagem;
+
+  toast.className = `toast ${tipo}`;
+
+  setTimeout(() => {
+    toast.classList.add('hidden');
+  }, 3000);
+}
+
+confirmarBtn.onclick = async () => {
   const nome = nomeInput.value;
   const cadeiras = parseInt(cadeirasInput.value);
+
   const id = mesaSelecionada;
+
   const url = gerente
     ? `https://simulados-oab-back.onrender.com/mesas/${id}`
     : `https://simulados-oab-back.onrender.com/mesas/${id}/reservar`;
+
   const method = gerente ? "PUT" : "POST";
 
-  fetch(url, {
-    method,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ nome, cadeiras }),
-  }).then(() => location.reload());
+  try {
+
+    const response = await fetch(url, {
+      method,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        nome,
+        cadeiras
+      })
+    });
+
+    if (!response.ok) {
+
+      const erro = await response.json();
+
+      mostrarToast(
+        erro.error || "Erro ao salvar reserva.",
+        "error"
+      );
+
+      return;
+    }
+
+    mostrarToast(
+      gerente
+        ? `Mesa ${id + 1} reservada com sucesso!`
+        : `Mesa ${id + 1} atualizada com sucesso!`,
+      "success"
+    );
+
+    modal.classList.add("hidden");
+
+  } catch (error) {
+
+    mostrarToast(
+      "Erro de conexão com o servidor.",
+      "error"
+    );
+
+    console.error(error);
+  }
 };
 
 cancelarBtn.onclick = () => modal.classList.add("hidden");
