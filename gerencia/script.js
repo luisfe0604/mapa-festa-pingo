@@ -269,7 +269,7 @@ function exportarExcel() {
   const dados = mesas.map((mesa, index) => ({
     Mesa: index + 1,
 
-    Nome: mesa.nome || "Livre",
+    Nome: mesa.nome || "",
 
     Cadeiras: mesa.cadeiras || 0,
   }));
