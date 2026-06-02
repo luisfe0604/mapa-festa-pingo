@@ -12,33 +12,22 @@ const gerente = typeof isGerente !== "undefined" && isGerente === true;
 const limparBtn = document.getElementById("limpar");
 
 async function carregarMesas() {
-
-  console.log('carregarMesas chamado');
-
-  const response = await fetch(
-    'https://simulados-oab-back.onrender.com/mesas'
-  );
+  const response = await fetch("https://simulados-oab-back.onrender.com/mesas");
 
   mesas = await response.json();
-
-  console.log('mesas recebidas', mesas.length);
 
   renderizarMapa();
 }
 
 carregarMesas();
 
-document.addEventListener('visibilitychange', () => {
-  console.log('visibilitychange');
+document.addEventListener("visibilitychange", () => {
   carregarMesas();
 });
 
 const socket = new WebSocket("wss://simulados-oab-back.onrender.com");
 
 socket.addEventListener("open", () => {
-
-  console.log("WebSocket conectado");
-
   carregarMesas();
 });
 
@@ -123,16 +112,15 @@ function renderizarMapa() {
   mapa.appendChild(wrapper);
 }
 
-function mostrarToast(mensagem, tipo = 'success') {
-
-  const toast = document.getElementById('toast');
+function mostrarToast(mensagem, tipo = "success") {
+  const toast = document.getElementById("toast");
 
   toast.textContent = mensagem;
 
   toast.className = `toast ${tipo}`;
 
   setTimeout(() => {
-    toast.classList.add('hidden');
+    toast.classList.add("hidden");
   }, 3000);
 }
 
@@ -166,26 +154,21 @@ confirmarBtn.onclick = async () => {
   const method = gerente ? "PUT" : "POST";
 
   try {
-
     const response = await fetch(url, {
       method,
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         nome,
-        cadeiras
-      })
+        cadeiras,
+      }),
     });
 
     if (!response.ok) {
-
       const erro = await response.json();
 
-      mostrarToast(
-        erro.error || "Erro ao salvar reserva.",
-        "error"
-      );
+      mostrarToast(erro.error || "Erro ao salvar reserva.", "error");
 
       return;
     }
@@ -194,30 +177,24 @@ confirmarBtn.onclick = async () => {
       gerente
         ? `Mesa ${id + 1} atualizada com sucesso!`
         : `Mesa ${id + 1} reservada com sucesso!`,
-      "success"
+      "success",
     );
 
     modal.classList.add("hidden");
-
   } catch (error) {
-
-    mostrarToast(
-      "Erro de conexão com o servidor.",
-      "error"
-    );
+    mostrarToast("Erro de conexão com o servidor.", "error");
 
     console.error(error);
   }
 };
 
 limparBtn.onclick = async () => {
-
   if (!gerente || mesaSelecionada === null) {
     return;
   }
 
   const confirmar = confirm(
-    `Deseja realmente liberar a Mesa ${mesaSelecionada + 1}?`
+    `Deseja realmente liberar a Mesa ${mesaSelecionada + 1}?`,
   );
 
   if (!confirmar) {
@@ -225,7 +202,6 @@ limparBtn.onclick = async () => {
   }
 
   try {
-
     const id = mesaSelecionada;
 
     const response = await fetch(
@@ -233,41 +209,29 @@ limparBtn.onclick = async () => {
       {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           nome: null,
           cadeiras: null,
-          ocupada: false
-        })
-      }
+          ocupada: false,
+        }),
+      },
     );
 
     if (!response.ok) {
-
-      mostrarToast(
-        "Erro ao liberar mesa.",
-        "error"
-      );
+      mostrarToast("Erro ao liberar mesa.", "error");
 
       return;
     }
 
-    mostrarToast(
-      `Mesa ${id + 1} liberada com sucesso!`,
-      "success"
-    );
+    mostrarToast(`Mesa ${id + 1} liberada com sucesso!`, "success");
 
     modal.classList.add("hidden");
-
   } catch (error) {
-
     console.error(error);
 
-    mostrarToast(
-      "Erro de conexão com o servidor.",
-      "error"
-    );
+    mostrarToast("Erro de conexão com o servidor.", "error");
   }
 };
 
