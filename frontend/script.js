@@ -32,9 +32,7 @@ async function carregarMesas() {
 
 carregarMesas();
 
-document.addEventListener("visibilitychange", () => {
-    carregarMesas();
-});
+document.addEventListener("visibilitychange", carregarMesas());
 
 const socket = new WebSocket("wss://simulados-oab-back.onrender.com");
 
