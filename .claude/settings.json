@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/luife/Desktop/Pessoal/Arquivos/Freelas/PINGO/festa-junina-mesas/**)",
+      "Edit(//c/Users/luife/Desktop/Pessoal/Arquivos/Freelas/PINGO/festa-junina-mesas/**)",
+      "Write(//c/Users/luife/Desktop/Pessoal/Arquivos/Freelas/PINGO/festa-junina-mesas/**)",
+      "Read(//c/Users/luife/Desktop/Pessoal/Arquivos/Freelas/Kalil/backend/src/modules/useTestsGenerics/mesas_festa_pingo/**)",
+      "Bash(npm install*)",
+      "Bash(npm run *)",
+      "Bash(npm ls*)",
+      "Bash(npx *)",
+      "Bash(next *)",
+      "Bash(node *)",
+      "Bash(mkdir*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git diff*)",
+      "Bash(git status*)",
+      "Bash(git log*)"
+    ],
+    "deny": [
+      "Edit(//c/Users/luife/Desktop/Pessoal/Arquivos/Freelas/Kalil/backend/src/modules/useTestsGenerics/mesas_festa_pingo/**)",
+      "Write(//c/Users/luife/Desktop/Pessoal/Arquivos/Freelas/Kalil/backend/src/modules/useTestsGenerics/mesas_festa_pingo/**)",
+      "Bash(rm -rf*)",
+      "Bash(git reset --hard*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git clean*)"
+    ]
+  }
+}
