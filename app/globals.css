@@ -679,7 +679,7 @@ body {
 
   #mapa-container {
     margin: 64px auto;
-    padding: 18px 12px;
+    padding: 18px 28px 18px 12px;
     border-radius: 20px;
   }
 
@@ -696,8 +696,8 @@ body {
   }
 
   .mesa {
-    width: 42px;
-    height: 38px;
+    width: 40px;
+    height: 36px;
     font-size: 12px;
     border-radius: 8px;
   }
@@ -727,7 +727,7 @@ body {
   }
 
   .identificacao.caixa {
-    right: -16px;
+    right: 4px;
     width: 20px;
     padding: 6px 0;
   }
@@ -752,20 +752,25 @@ body {
 
 @media (max-width: 360px) {
   #mapa-container {
-    padding: 10px 8px;
+    padding: 10px 24px 10px 6px;
   }
 
   .mapa-wrapper {
-    grid-template-columns: auto 10px auto;
+    grid-template-columns: auto 8px auto;
   }
 
   .lado-mapa {
     gap: 1px;
   }
 
+  .identificacao.caixa {
+    width: 18px;
+    padding: 5px 0;
+  }
+
   .mesa {
-    width: 36px;
-    height: 34px;
+    width: 34px;
+    height: 32px;
     font-size: 11px;
   }
 }
