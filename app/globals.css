@@ -678,17 +678,17 @@ body {
   }
 
   #mapa-container {
-    margin: 64px 20px 64px;
-    padding: 22px 18px;
+    margin: 64px auto;
+    padding: 18px 12px;
     border-radius: 20px;
   }
 
   .mapa-wrapper {
-    grid-template-columns: auto 20px auto;
+    grid-template-columns: auto 14px auto;
   }
 
   .lado-mapa {
-    gap: 3px;
+    gap: 2px;
   }
 
   .coluna-mesa {
@@ -696,8 +696,8 @@ body {
   }
 
   .mesa {
-    width: 44px;
-    height: 40px;
+    width: 42px;
+    height: 38px;
     font-size: 12px;
     border-radius: 8px;
   }
@@ -727,9 +727,9 @@ body {
   }
 
   .identificacao.caixa {
-    right: -34px;
-    width: 26px;
-    padding: 8px 0;
+    right: -10px;
+    width: 20px;
+    padding: 6px 0;
   }
 
   .identificacao.entrada,
@@ -747,5 +747,25 @@ body {
 
   .modal-content h2 {
     font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 360px) {
+  #mapa-container {
+    padding: 10px 8px;
+  }
+
+  .mapa-wrapper {
+    grid-template-columns: auto 10px auto;
+  }
+
+  .lado-mapa {
+    gap: 1px;
+  }
+
+  .mesa {
+    width: 36px;
+    height: 34px;
+    font-size: 11px;
   }
 }
