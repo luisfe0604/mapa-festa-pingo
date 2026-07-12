@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { fetchMesas } from "@/lib/mesasApi";
-import { WS_URL } from "@/lib/config";
+import { supabase } from "@/lib/supabaseClient";
 
 export function useMesas() {
   const [mesas, setMesas] = useState([]);
@@ -22,26 +22,18 @@ export function useMesas() {
 
     document.addEventListener("visibilitychange", carregarMesas);
 
-    const socket = new WebSocket(WS_URL);
-
-    socket.addEventListener("open", () => {
-      carregarMesas();
-    });
-
-    socket.addEventListener("message", (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        if (data.type === "mesas:update") {
-          setMesas(data.mesas);
-        }
-      } catch (error) {
-        console.error("Erro ao processar mensagem WebSocket:", error);
-      }
-    });
+    const channel = supabase
+      .channel("mesas_festa_realtime")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "mesas_festa" },
+        carregarMesas,
+      )
+      .subscribe();
 
     return () => {
       document.removeEventListener("visibilitychange", carregarMesas);
-      socket.close();
+      supabase.removeChannel(channel);
     };
   }, [carregarMesas]);
 
